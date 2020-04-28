@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheGrader.Pages;
 
 namespace TheGrader
 {
@@ -20,9 +21,20 @@ namespace TheGrader
     /// </summary>
     public partial class MainWindow : Window
     {
+        // static frame for changing content from other pages
+        private static Frame mainFrame;
+
+        // constructor
         public MainWindow()
         {
             InitializeComponent();
+            MainMenuControl.Content = new SelectionPage();
+        }
+
+        // static function for setting mainFrame
+        public static void SetContent(object newPage)
+        {
+            mainFrame.Content = newPage;
         }
     }
 }
