@@ -29,6 +29,7 @@ namespace TheGrader
         {
             InitializeComponent();
             MainMenuControl.Content = new SelectionPage();
+            mainFrame = MainMenuControl;
         }
 
         // static function for setting mainFrame
