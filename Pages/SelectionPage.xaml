@@ -25,7 +25,41 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+
+        <StackPanel Background="LightGray">
+            <Label Content="Semesters"/>
+            <Separator Margin="3"/>
+            <ScrollViewer>
+                <StackPanel Name="SemesterPanel" />
+            </ScrollViewer>
+        </StackPanel>
         
-        
+        <StackPanel Grid.Row="1" Margin="3">
+            <UniformGrid Columns="2" Rows="3" Margin="0 3">
+                <TextBlock Text="Semester name:"/>
+                <TextBox Name="SemesterNameBox"/>
+                <TextBlock Text="Start date:"/>
+                <DatePicker Name="StartDatePicker" Height="30"/>
+                <Button Name="CreateSemesterBtn" Content="Create"/>
+                <Button Name="DeleteSemesterBtn" Content="Delete" Background="LightGray" IsEnabled="False"/>
+            </UniformGrid>
+
+            <Button Name="CompleteBtn" Content="Complete Semester!"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="LightGray">
+            <Label Content="Subjects"/>
+            <Separator Margin="3"/>
+            <ScrollViewer>
+                <StackPanel Name="SubjectPanel"/>
+            </ScrollViewer>
+        </StackPanel>
+        <StackPanel Margin="3" Grid.Column="1" Grid.Row="1">
+            <UniformGrid Columns="2">
+                <TextBlock Text="Subject name:"/>
+                <TextBox Name="SubjectNameBox"/>
+            </UniformGrid>
+            <Button Name="CreateSubject" Content="Create Subject" Margin="0 3"/>
+            <Button Name="DeleteSubject" Content="Delete Subject" IsEnabled="False" Background="LightGray"/>
+        </StackPanel>
     </Grid>
 </Page>
