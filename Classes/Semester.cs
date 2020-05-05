@@ -10,11 +10,14 @@ namespace TheGrader
         public DateTime StartDate { get; set; }
         public bool Completed { get; set; } 
 
+        public List<Fach> Faecher { get; set; }
+
         public Semester(string name, DateTime startDate, bool completed)
         {
             this.Name = name;
             this.StartDate = startDate;
             this.Completed = completed;
+            Faecher = new List<Fach>();
         }
     }
 }

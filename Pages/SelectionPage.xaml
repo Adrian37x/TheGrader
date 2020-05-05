@@ -30,7 +30,7 @@
             <Label Content="Semesters"/>
             <Separator Margin="3"/>
             <ScrollViewer>
-                <StackPanel Name="SemesterPanel" />
+                <StackPanel Name="SemesterPanel"/>
             </ScrollViewer>
         </StackPanel>
         
@@ -40,11 +40,11 @@
                 <TextBox Name="SemesterNameBox"/>
                 <TextBlock Text="Start date:"/>
                 <DatePicker Name="StartDatePicker" Height="30"/>
-                <Button Name="CreateSemesterBtn" Content="Create"/>
-                <Button Name="DeleteSemesterBtn" Content="Delete" Background="LightGray" IsEnabled="False"/>
+                <Button Name="CreateSemesterBtn" Content="Create" Click="CreateSemesterBtn_Click"/>
+                <Button Name="DeleteSemesterBtn" Content="Delete" Background="LightGray" IsEnabled="False" Click="DeleteSemesterBtn_Click"/>
             </UniformGrid>
 
-            <Button Name="CompleteBtn" Content="Complete Semester!"/>
+            <Button Name="CompleteBtn" Content="Complete Semester!" IsEnabled="False" Background="LightGray" Click="CompleteBtn_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Background="LightGray">
             <Label Content="Subjects"/>
@@ -58,8 +58,7 @@
                 <TextBlock Text="Subject name:"/>
                 <TextBox Name="SubjectNameBox"/>
             </UniformGrid>
-            <Button Name="CreateSubject" Content="Create Subject" Margin="0 3"/>
-            <Button Name="DeleteSubject" Content="Delete Subject" IsEnabled="False" Background="LightGray"/>
+            <Button Name="CreateSubject" Content="Create Subject" Margin="0 3" Click="CreateSubject_Click"/>
         </StackPanel>
     </Grid>
 </Page>

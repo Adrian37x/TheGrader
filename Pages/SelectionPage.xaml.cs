@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +22,103 @@ namespace TheGrader.Pages
     /// </summary>
     public partial class SelectionPage : Page
     {
+        private ObservableCollection<Semester> semesters;
+
+        private Semester selectedSemester;
+        private Button semesterButton;
+
+        private Fach selectedFach;
+        private Button fachButton;
+
         public SelectionPage()
         {
             InitializeComponent();
+            semesters = new ObservableCollection<Semester>();
+
+            SemesterPanel.DataContext = semesters;
+        }
+
+        private void CreateSubject_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(SubjectNameBox.Text) && selectedSemester != null)
+            {
+                selectedSemester.Faecher.Add(new Fach(SubjectNameBox.Text));
+                DisplayFaecher(selectedSemester);
+            }
+        }
+
+        private void CreateSemesterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(SemesterNameBox.Text) && StartDatePicker.SelectedDate.HasValue)
+            {
+                Semester semester = new Semester(SemesterNameBox.Text, StartDatePicker.SelectedDate ?? DateTime.Now, false);
+                semesters.Add(semester);
+                Button button = new Button
+                {
+                    Content = SemesterNameBox.Text,
+                };
+                SemesterPanel.Children.Add(button);
+                button.Click += (s, ev) => OnSemesterBtn_Click(s, ev, semester);
+                SemesterNameBox.Text = "";
+                StartDatePicker.SelectedDate = null;
+            }
+        }
+
+        private void OnSemesterBtn_Click(object sender, RoutedEventArgs e, Semester semester)
+        {
+            selectedSemester = semester;
+            DeleteSemesterBtn.IsEnabled = true;
+            DeleteSemesterBtn.ClearValue(BackgroundProperty);
+            if (!semester.Completed)
+            {
+                CompleteBtn.IsEnabled = true;
+                CompleteBtn.ClearValue(BackgroundProperty);
+            }
+            else
+            {
+                CompleteBtn.IsEnabled = false;
+                CompleteBtn.Background = Brushes.LightGray;
+            }
+            semesterButton = (Button)sender;
+            DisplayFaecher(semester);
+        }
+
+        private void DeleteSemesterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to delete " + selectedSemester.Name + "?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                semesters.Remove(selectedSemester);
+                SemesterPanel.Children.Remove(semesterButton);
+            }
+        }
+
+        private void CompleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to complete " + selectedSemester.Name + "?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                selectedSemester.Completed = true;
+                CompleteBtn.IsEnabled = false;
+                CompleteBtn.Background = Brushes.LightGray;
+            }
+        }
+
+        private void DisplayFaecher(Semester semester)
+        {
+            foreach (Fach fach in semester.Faecher)
+            {
+                Button btn = new Button
+                {
+                    Content = fach.Name
+                };
+                btn.Click += (s, ev) => GoToFachPage(fach);
+            }
+        }
+
+        private void GoToFachPage(Fach fach)
+        {
+            MainWindow.SetContent(new SubjectPage(fach));
         }
     }
 }
