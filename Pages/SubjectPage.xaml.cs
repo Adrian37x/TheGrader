@@ -22,11 +22,13 @@ namespace TheGrader.Pages
     public partial class SubjectPage : Page
     {
         //public ObservableCollection<Exam> Moments { get; set; } = new ObservableCollection<Exam>();
+        private Fach selectedFach;
 
-        public SubjectPage()
+        public SubjectPage(Fach fach)
         {
             InitializeComponent();
 
+            selectedFach = fach;
             CreateEditPanel.DataContext = "öalksdjfasödf";
         }
     }

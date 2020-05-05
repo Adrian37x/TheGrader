@@ -59,7 +59,6 @@
                 <TextBox Name="SubjectNameBox"/>
             </UniformGrid>
             <Button Name="CreateSubject" Content="Create Subject" Margin="0 3" Click="CreateSubject_Click"/>
-            <Button Name="DeleteSubject" Content="Delete Subject" IsEnabled="False" Background="LightGray"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,8 +23,12 @@ namespace TheGrader.Pages
     public partial class SelectionPage : Page
     {
         private ObservableCollection<Semester> semesters;
+
         private Semester selectedSemester;
-        private Button selectedButton;
+        private Button semesterButton;
+
+        private Fach selectedFach;
+        private Button fachButton;
 
         public SelectionPage()
         {
@@ -70,7 +75,7 @@ namespace TheGrader.Pages
                 CompleteBtn.IsEnabled = false;
                 CompleteBtn.Background = Brushes.LightGray;
             }
-            selectedButton = (Button)sender;
+            semesterButton = (Button)sender;
         }
 
         private void DeleteSemesterBtn_Click(object sender, RoutedEventArgs e)
@@ -79,7 +84,7 @@ namespace TheGrader.Pages
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 semesters.Remove(selectedSemester);
-                SemesterPanel.Children.Remove(selectedButton);
+                SemesterPanel.Children.Remove(semesterButton);
             }
         }
 
@@ -92,6 +97,23 @@ namespace TheGrader.Pages
                 CompleteBtn.IsEnabled = false;
                 CompleteBtn.Background = Brushes.LightGray;
             }
+        }
+
+        private void DisplayFaecher(Semester semester)
+        {
+            foreach (Fach fach in semester.Faecher)
+            {
+                Button btn = new Button
+                {
+                    Content = fach.Name
+                };
+                btn.Click += (s, ev) => GoToFachPage(fach);
+            }
+        }
+
+        private void GoToFachPage(Fach fach)
+        {
+            MainWindow.SetContent(new SubjectPage(fach));
         }
     }
 }
