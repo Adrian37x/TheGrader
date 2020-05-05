@@ -64,7 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Exam.cs" />
-    <Compile Include="Classes\Subject.cs" />
+    <Compile Include="Classes\Fach.cs" />
     <Compile Include="Classes\LearningTime.cs" />
     <Compile Include="Classes\Semester.cs" />
     <Compile Include="MainWindow.xaml.cs">

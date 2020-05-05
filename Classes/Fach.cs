@@ -4,12 +4,12 @@ using System.Text;
 
 namespace TheGrader
 {
-    public class Subject  
+    public class Fach  
     {
         #region properties
         public string Name { get; set; }
         public List<Exam> Exams { get; set; }
-        public double Average { get; set; }
+        public double Average { get; set; } 
         #endregion
 
         #region methods
