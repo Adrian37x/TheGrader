@@ -43,12 +43,13 @@
             <Button Name="CreateExamBtn" Content="Create" Height="40"/>
         </StackPanel>
         
-        <StackPanel Name="CreateEditPanel" DataContext="" Grid.Column="1" Grid.Row="1" Background="LightGray">
+        <StackPanel Name="CreateEditPanel" Grid.Column="1" Grid.Row="1" Background="LightGray">
             <Label Content="{Binding}" FontSize="22"/>
             <Separator Margin="3"/>
-            <ScrollViewer>
-                <StackPanel Name="DetailPanel"/>
-            </ScrollViewer>
+            <StackPanel Name="FormPanel">
+                <TextBox Text="{Binding Name}"/>
+                <TextBox Text="{Binding Grade}"/>
+            </StackPanel>
         </StackPanel>
         
         <StackPanel Margin="3" Grid.Column="1" Grid.Row="2">
