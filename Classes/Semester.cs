@@ -16,10 +16,10 @@ namespace TheGrader
         #region constructor
         public Semester(string name, DateTime startDate, bool completed, List<Fach> subjects)
         {
-            Name = name;
-            StartDate = startDate;
-            Completed = completed;
-            Subjects = subjects;
+            this.Name = name;
+            this.StartDate = startDate;
+            this.Completed = completed;
+            this.Subjects = subjects;
         } 
         #endregion
     }

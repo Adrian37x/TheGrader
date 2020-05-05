@@ -11,15 +11,15 @@ namespace TheGrader
         #region properties
         public DateTime Date { get; set; }
         public double SpentMinutes { get; set; }
-        public Subject Subject { get; set; }
+        public Fach Subject { get; set; }
         #endregion
 
         #region constructor
-        public LearningTime(DateTime date, double spentMinutes, Subject subject)
+        public LearningTime(DateTime date, double spentMinutes, Fach subject)
         {
-            Date = date;
-            SpentMinutes = spentMinutes;
-            Subject = subject;
+            this.Date = date;
+            this.SpentMinutes = spentMinutes;
+            this.Subject = subject;
         } 
         #endregion
     }

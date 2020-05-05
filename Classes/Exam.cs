@@ -18,15 +18,15 @@ namespace TheGrader
         #region constructor
         public Exam(double pointsScored, double maxPoints, double weight, double grade = 0)
         {
-            PointsScored = pointsScored;
-            MaxPoints = maxPoints;
-            Weight = weight;
+            this.PointsScored = pointsScored;
+            this.MaxPoints = maxPoints;
+            this.Weight = weight;
             // the grade will be calculated if not set manually
             if (grade == 0){
                 CalculateGrade();
             }
             else{
-                Grade = grade;
+                this.Grade = grade;
             }
         }
         #endregion
