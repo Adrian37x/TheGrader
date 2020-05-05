@@ -21,6 +21,8 @@ namespace TheGrader.Pages
     /// </summary>
     public partial class SubjectPage : Page
     {
+        public Fach Fach { get; set; }
+
         public ObservableCollection<Exam> Exams { get; set; } = new ObservableCollection<Exam> { 
             new Exam("File 1", 134, 155, 1, DateTime.Now),
             new Exam("Pollution Presentation", 14, 20, .3f, DateTime.Now),
@@ -29,9 +31,11 @@ namespace TheGrader.Pages
         };
         public Exam SelectedExam { get; set; }
 
-        public SubjectPage()
+        public SubjectPage(Fach fach)
         {
             InitializeComponent();
+
+            this.Fach = fach;
 
             CreateEditPanel.DataContext = "";
 
