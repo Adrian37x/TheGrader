@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheGrader
 {
-    class Exam
+    public class Exam
     {
         #region properties
         public double Grade { get; set; }
@@ -18,14 +18,14 @@ namespace TheGrader
         #region constructor
         public Exam(double pointsScored, double maxPoints, double weight, double grade = 0)
         {
-            PointsScored = pointsScored;
-            MaxPoints = maxPoints;
-            Weight = weight;
+            this.PointsScored = pointsScored;
+            this.MaxPoints = maxPoints;
+            this.Weight = weight;
             if (grade != 0){
                 CalculateGrade();
             }
             else{
-                Grade = grade;
+                this.Grade = grade;
             }
         }
         #endregion

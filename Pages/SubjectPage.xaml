@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SubjectPage">
-
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,6 +16,43 @@
     </Page.Resources>
     
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Background="LightGray" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+            <Label Content="Fach bezeichnung (binding)"/>
+            <Separator Margin="3"/>
+        </StackPanel>
+
+        <StackPanel Background="LightGray" Grid.Row="1">
+            <Label Content="Exams" FontSize="22"/>
+            <Separator Margin="3"/>
+            <ScrollViewer>
+                <StackPanel Name="ExamPanel" />
+            </ScrollViewer>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="3">
+            <Button Name="CreateExamBtn" Content="Create" Height="40"/>
+        </StackPanel>
         
+        <StackPanel Name="CreateEditPanel" DataContext="" Grid.Column="1" Grid.Row="1" Background="LightGray">
+            <Label Content="{Binding}" FontSize="22"/>
+            <Separator Margin="3"/>
+            <ScrollViewer>
+                <StackPanel Name="DetailPanel"/>
+            </ScrollViewer>
+        </StackPanel>
+        
+        <StackPanel Margin="3" Grid.Column="1" Grid.Row="2">
+            <Button Name="DeleteExamBtn" Content="Delete" Background="LightGray" IsEnabled="False" Height="40"/>
+        </StackPanel>
     </Grid>
 </Page>

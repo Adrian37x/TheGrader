@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheGrader
 {
-    class LearningTime
+    public class LearningTime
     {
         #region properties
         public DateTime Date { get; set; }
@@ -16,8 +16,8 @@ namespace TheGrader
         #region constructor
         public LearningTime(DateTime date, double spentMinutes)
         {
-            Date = date;
-            SpentMinutes = spentMinutes;
+            this.Date = date;
+            this.SpentMinutes = spentMinutes;
         } 
         #endregion
     }

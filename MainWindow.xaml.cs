@@ -28,7 +28,8 @@ namespace TheGrader
         public MainWindow()
         {
             InitializeComponent();
-            MainMenuControl.Content = new SelectionPage();
+            //MainMenuControl.Content = new SelectionPage();
+            MainMenuControl.Content = new SubjectPage();
             mainFrame = MainMenuControl;
         }
 

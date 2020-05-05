@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TheGrader
 { 
-    class Semester
+    public class Semester
     {
         public string Name { get; set; } 
         public DateTime StartDate { get; set; }
@@ -12,9 +12,9 @@ namespace TheGrader
 
         public Semester(string name, DateTime startDate, bool completed)
         {
-            Name = name;
-            StartDate = startDate;
-            Completed = completed;
+            this.Name = name;
+            this.StartDate = startDate;
+            this.Completed = completed;
         }
     }
 }

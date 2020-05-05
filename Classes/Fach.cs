@@ -4,10 +4,17 @@ using System.Text;
 
 namespace TheGrader
 {
-    class Fach
-    { 
-        public string Name { get; set; } 
+    public class Fach
+    {
+        #region Properties
+        public string Name { get; set; }
+        #endregion
 
-
+        #region Constructor
+        public Fach(string name)
+        {
+            this.Name = name;
+        }
+        #endregion
     }
 }

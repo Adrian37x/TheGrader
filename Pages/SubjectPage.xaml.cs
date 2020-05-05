@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,13 @@ namespace TheGrader.Pages
     /// </summary>
     public partial class SubjectPage : Page
     {
+        //public ObservableCollection<Exam> Moments { get; set; } = new ObservableCollection<Exam>();
+
         public SubjectPage()
         {
             InitializeComponent();
+
+            CreateEditPanel.DataContext = "öalksdjfasödf";
         }
     }
 }
