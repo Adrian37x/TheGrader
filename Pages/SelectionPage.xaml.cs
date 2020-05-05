@@ -40,7 +40,11 @@ namespace TheGrader.Pages
 
         private void CreateSubject_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(SubjectNameBox.Text) && selectedSemester != null)
+            {
+                selectedSemester.Faecher.Add(new Fach(SubjectNameBox.Text));
+                DisplayFaecher(selectedSemester);
+            }
         }
 
         private void CreateSemesterBtn_Click(object sender, RoutedEventArgs e)
@@ -76,6 +80,7 @@ namespace TheGrader.Pages
                 CompleteBtn.Background = Brushes.LightGray;
             }
             semesterButton = (Button)sender;
+            DisplayFaecher(semester);
         }
 
         private void DeleteSemesterBtn_Click(object sender, RoutedEventArgs e)

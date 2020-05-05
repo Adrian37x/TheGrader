@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Media.Animation;
 
 namespace TheGrader
 {
@@ -11,6 +12,11 @@ namespace TheGrader
         public List<Exam> Exams { get; set; }
         public double Average { get; set; } 
         #endregion
+
+        public Fach(string name)
+        {
+            this.Name = name;
+        }
 
         #region methods
         private void CalculateAverage()
