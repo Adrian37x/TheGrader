@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace TheGrader
 {
-    class Exam
+    class LearningTime
     {
-        private double grade;
-        private double pointsScored;
-        private double maxPoints;
-        private double weight;
+        public DateTime date { get; set; }
+        public double spentMinutes { get; set; }
     }
 }

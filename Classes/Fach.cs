@@ -6,6 +6,6 @@ namespace TheGrader
 {
     class Fach
     { 
-        private string name;
+        public string name { get; set; }
     }
 }
