@@ -8,7 +8,17 @@ namespace TheGrader
 {
     class LearningTime
     {
-        public DateTime date { get; set; }
-        public double spentMinutes { get; set; }
+        #region properties
+        public DateTime Date { get; set; }
+        public double SpentMinutes { get; set; } 
+        #endregion
+
+        #region constructor
+        public LearningTime(DateTime date, double spentMinutes)
+        {
+            Date = date;
+            SpentMinutes = spentMinutes;
+        } 
+        #endregion
     }
 }
