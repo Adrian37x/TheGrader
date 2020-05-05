@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheGrader
 {
-    class Exam
+    public class Exam
     {
         #region properties
         public double Grade { get; set; }
@@ -21,7 +21,8 @@ namespace TheGrader
             PointsScored = pointsScored;
             MaxPoints = maxPoints;
             Weight = weight;
-            if (grade != 0){
+            // the grade will be calculated if not set manually
+            if (grade == 0){
                 CalculateGrade();
             }
             else{
@@ -31,9 +32,12 @@ namespace TheGrader
         #endregion
 
         #region methods
+        /// <summary>
+        /// the grade will be calculated from scored and max points
+        /// </summary>
         private void CalculateGrade()
         {
-            Grade = PointsScored * 5 / MaxPoints + 1;
+            Grade = Math.Round(PointsScored * 5 / MaxPoints + 1, 2);
         } 
         #endregion
     }

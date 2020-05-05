@@ -4,18 +4,24 @@ using System.Text;
 
 namespace TheGrader
 { 
-    class Semester
+    public class Semester
     {
-        public string Name { get; set; } 
+        #region properties
+        public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public bool Completed { get; set; } 
+        public List<Subject> Subjects { get; set; } 
+        #endregion
 
-        public Semester(string name, DateTime startDate, bool completed)
+        #region constructor
+        public Semester(string name, DateTime startDate, bool completed, List<Subject> subjects)
         {
             Name = name;
             StartDate = startDate;
             Completed = completed;
-        }
+            Subjects = subjects;
+        } 
+        #endregion
     }
 }
 
