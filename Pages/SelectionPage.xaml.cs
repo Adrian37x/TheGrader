@@ -43,6 +43,7 @@ namespace TheGrader.Pages
             if (!string.IsNullOrEmpty(SubjectNameBox.Text) && selectedSemester != null)
             {
                 selectedSemester.Faecher.Add(new Fach(SubjectNameBox.Text));
+                SubjectNameBox.Text = null;
                 DisplayFaecher(selectedSemester);
             }
         }
@@ -113,6 +114,7 @@ namespace TheGrader.Pages
                     Content = fach.Name
                 };
                 btn.Click += (s, ev) => GoToFachPage(fach);
+                SubjectPanel.Children.Add(btn);
             }
         }
 
