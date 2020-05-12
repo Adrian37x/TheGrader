@@ -33,7 +33,9 @@ namespace TheGrader.Pages
         public SelectionPage()
         {
             InitializeComponent();
-            semesters = new ObservableCollection<Semester>();
+            semesters = new ObservableCollection<Semester> {
+                new Semester("1.1 Lehrjahr", DateTime.Now, false)
+            };
 
             SemesterPanel.DataContext = semesters;
         }
@@ -45,6 +47,17 @@ namespace TheGrader.Pages
                 selectedSemester.Faecher.Add(new Fach(SubjectNameBox.Text));
                 SubjectNameBox.Text = null;
                 DisplayFaecher(selectedSemester);
+            }
+            else
+            {
+                if (selectedSemester == null)
+                {
+                    MessageBox.Show("Select a semester before creating a subject");
+                }
+                else
+                {
+                    MessageBox.Show("Fill in all fields (name)");
+                }
             }
         }
 
@@ -62,6 +75,10 @@ namespace TheGrader.Pages
                 button.Click += (s, ev) => OnSemesterBtn_Click(s, ev, semester);
                 SemesterNameBox.Text = "";
                 StartDatePicker.SelectedDate = null;
+            }
+            else
+            {
+                MessageBox.Show("Fill in all fields (name, start date)");
             }
         }
 
@@ -86,7 +103,7 @@ namespace TheGrader.Pages
 
         private void DeleteSemesterBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to delete " + selectedSemester.Name + "?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete " + selectedSemester.Name + "?", "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 semesters.Remove(selectedSemester);
@@ -96,7 +113,7 @@ namespace TheGrader.Pages
 
         private void CompleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to complete " + selectedSemester.Name + "?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to complete " + selectedSemester.Name + "?", "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 selectedSemester.Completed = true;

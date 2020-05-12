@@ -26,8 +26,16 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Background="LightGray" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
-            <Label Content="Fach bezeichnung (binding)"/>
+        <StackPanel Name="Title" Background="LightGray" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="50px"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Label Content="{Binding Name}" Grid.Column="0"/>
+                <Button Grid.Column="1">Back</Button>
+            </Grid>
             <Separator Margin="3"/>
         </StackPanel>
 

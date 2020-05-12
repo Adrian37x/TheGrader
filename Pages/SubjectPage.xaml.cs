@@ -36,6 +36,7 @@ namespace TheGrader.Pages
             InitializeComponent();
 
             this.Fach = fach;
+            Title.DataContext = Fach;
 
             CreateEditPanel.DataContext = "";
 
@@ -55,6 +56,11 @@ namespace TheGrader.Pages
             CreateEditPanel.DataContext = "Edit";
             SelectedExam = exam;
             FormPanel.DataContext = SelectedExam;
+        }
+
+        private void GoToFachPage(Fach fach)
+        {
+            MainWindow.SetContent(new SubjectPage(fach));
         }
     }
 }
