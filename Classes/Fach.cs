@@ -25,6 +25,7 @@ namespace TheGrader
             foreach (var exam in Exams){
                 summe = summe + exam.Grade;
             }
+
             Average = summe / Exams.Count;
         } 
         #endregion
