@@ -58,9 +58,9 @@ namespace TheGrader.Pages
             FormPanel.DataContext = SelectedExam;
         }
 
-        private void GoToFachPage(Fach fach)
+        private void BackToSelectionPage_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.SetContent(new SubjectPage(fach));
+            MainWindow.SetContent(new SelectionPage());
         }
     }
 }

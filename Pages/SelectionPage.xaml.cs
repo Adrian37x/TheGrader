@@ -36,6 +36,8 @@ namespace TheGrader.Pages
             semesters = new ObservableCollection<Semester> {
                 new Semester("1.1 Lehrjahr", DateTime.Now, false)
             };
+            semesters[0].Faecher.Add(new Fach("Maths"));
+            semesters[0].Faecher.Add(new Fach("German"));
 
             DisplaySemesters();
         }
