@@ -107,6 +107,7 @@ namespace TheGrader.Pages
 
         private void DisplayFaecher(Semester semester)
         {
+            SubjectPanel.Children.Clear();
             foreach (Fach fach in semester.Faecher)
             {
                 Button btn = new Button
