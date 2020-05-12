@@ -37,7 +37,20 @@ namespace TheGrader.Pages
                 new Semester("1.1 Lehrjahr", DateTime.Now, false)
             };
 
-            SemesterPanel.DataContext = semesters;
+            DisplaySemesters();
+        }
+
+        private void DisplaySemesters()
+        {
+            foreach (Semester semester in semesters)
+            {
+                Button button = new Button
+                {
+                    Content = semester.Name,
+                };
+                SemesterPanel.Children.Add(button);
+                button.Click += (s, ev) => OnSemesterBtn_Click(s, ev, semester);
+            }
         }
 
         private void CreateSubject_Click(object sender, RoutedEventArgs e)
