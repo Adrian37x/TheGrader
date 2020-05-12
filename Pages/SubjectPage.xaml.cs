@@ -23,12 +23,14 @@ namespace TheGrader.Pages
     {
         public Fach Fach { get; set; }
 
-        public ObservableCollection<Exam> Exams { get; set; } = new ObservableCollection<Exam> { 
-            new Exam("File 1", 134, 155, 1, DateTime.Now),
-            new Exam("Pollution Presentation", 14, 20, .3f, DateTime.Now),
-            new Exam("Vocab 3", 29, 30, .5f, DateTime.Now),
-            new Exam("File 2", 120, 148, 1, DateTime.Now),
-        };
+        //public ObservableCollection<Exam> Exams { get; set; } = new ObservableCollection<Exam> { 
+        //    new Exam("File 1", 134, 155, 1, DateTime.Now),
+        //    new Exam("Pollution Presentation", 14, 20, .3f, DateTime.Now),
+        //    new Exam("Vocab 3", 29, 30, .5f, DateTime.Now),
+        //    new Exam("File 2", 120, 148, 1, DateTime.Now),
+        //};
+        public ObservableCollection<Exam> Exams { get; set; }
+
         public Exam SelectedExam { get; set; }
 
         public SubjectPage(Fach fach)
@@ -36,6 +38,7 @@ namespace TheGrader.Pages
             InitializeComponent();
 
             this.Fach = fach;
+            this.Exams = new ObservableCollection<Exam>(Fach.Exams);
             Title.DataContext = Fach;
 
             CreateEditPanel.DataContext = "";

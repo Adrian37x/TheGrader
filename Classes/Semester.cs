@@ -17,7 +17,7 @@ namespace TheGrader
             this.Name = name;
             this.StartDate = startDate;
             this.Completed = completed;
-            Faecher = new List<Fach>();
+            this.Faecher = new List<Fach>();
         }
 
     }

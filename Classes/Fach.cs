@@ -16,6 +16,8 @@ namespace TheGrader
         public Fach(string name)
         {
             this.Name = name;
+            this.Exams = new List<Exam>();
+            CalculateAverage();
         }
 
         #region methods
