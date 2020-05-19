@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\Timestamp.cs" />
     <Compile Include="Classes\Exam.cs" />
     <Compile Include="Classes\Fach.cs" />
     <Compile Include="Classes\LearningTime.cs" />
