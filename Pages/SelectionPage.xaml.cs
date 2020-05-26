@@ -22,7 +22,7 @@ namespace TheGrader.Pages
     /// </summary>
     public partial class SelectionPage : Page
     {
-        private ObservableCollection<Semester> semesters;
+        private static ObservableCollection<Semester> semesters = new ObservableCollection<Semester>();
 
         private Semester selectedSemester;
         private Button semesterButton;
@@ -33,7 +33,6 @@ namespace TheGrader.Pages
         public SelectionPage()
         {
             InitializeComponent();
-            semesters = new ObservableCollection<Semester> {};
 
             DetailPanel.Visibility = Visibility.Hidden;
             DisplaySemesters();
