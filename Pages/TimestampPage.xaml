@@ -29,6 +29,12 @@
 
         <StackPanel Grid.Row="1">
             <Label Name="CurrFachLabel"/>
+            <UniformGrid Columns="2" Rows="2">
+                <TextBlock Text="Content"/>
+                <TextBox Name="ContentBox"/>
+                <TextBlock Text="Time (Mins)"/>
+                <TextBox x:Name="TimeMinsBox"/>
+            </UniformGrid>
         </StackPanel>
 
         <StackPanel Background="LightGray" Grid.Row="1" Grid.Column="1">
