@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Text;
@@ -14,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace TheGrader.Pages
 {
@@ -33,8 +36,8 @@ namespace TheGrader.Pages
         public SelectionPage()
         {
             InitializeComponent();
+            LoadSemesters();
 
-            DetailPanel.Visibility = Visibility.Hidden;
             DisplaySemesters();
         }
 
@@ -58,6 +61,7 @@ namespace TheGrader.Pages
                 selectedSemester.Faecher.Add(new Fach(SubjectNameBox.Text));
                 SubjectNameBox.Text = null;
                 DisplayFaecher(selectedSemester);
+                SaveSemesters();
             }
             else
             {
@@ -86,6 +90,7 @@ namespace TheGrader.Pages
                 button.Click += (s, ev) => OnSemesterBtn_Click(s, ev, semester);
                 SemesterNameBox.Text = "";
                 StartDatePicker.SelectedDate = null;
+                SaveSemesters();
             }
             else
             {
@@ -107,11 +112,7 @@ namespace TheGrader.Pages
                 CreateSubject.IsEnabled = false;
                 CreateSubject.Background = Brushes.LightGray;
 
-                SelectedSemesterLabel.Content = "";
-                StartDateLabel.Content = "";
                 SubjectPanel.Children.Clear();
-
-                DetailPanel.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -126,12 +127,6 @@ namespace TheGrader.Pages
                 CreateSubject.ClearValue(BackgroundProperty);
 
                 semesterButton = (Button)sender;
-
-                SelectedSemesterLabel.Content = selectedSemester.Name;
-                StartDateLabel.Content = selectedSemester.StartDate.ToShortDateString();
-
-                DetailPanel.Visibility = Visibility.Visible;
-
                 DisplayFaecher(semester);
             }
         }
@@ -154,6 +149,7 @@ namespace TheGrader.Pages
                 selectedSemester.Completed = true;
                 CompleteBtn.IsEnabled = false;
                 CompleteBtn.Background = Brushes.LightGray;
+                SaveSemesters();
             }
         }
 
@@ -175,5 +171,38 @@ namespace TheGrader.Pages
         {
             MainWindow.SetContent(new SubjectPage(fach));
         }
+
+        #region XML Serialization Methods
+        private void SaveSemesters()
+        {
+            if (!File.Exists("data.xml"))
+            {
+                FileStream fs = File.Create("data.xml");
+            }
+            else
+            {
+                StreamWriter filestream = new StreamWriter("data.xml");
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Semester>));
+                xmlSerializer.Serialize(filestream, semesters);
+                filestream.Close();
+            }
+        }
+
+        private void LoadSemesters()
+        {
+            if (!File.Exists("data.xml"))
+            {
+                FileStream fs = File.Create("data.xml");
+            }
+            else
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<Semester>));
+                using (FileStream stream = File.OpenRead("data.xml"))
+                {
+                    semesters = (ObservableCollection<Semester>)serializer.Deserialize(stream);
+                }
+            }
+        } 
+        #endregion
     }
 }

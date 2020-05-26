@@ -33,8 +33,13 @@ namespace TheGrader
                 this.Grade = grade;
             }
         }
-        #endregion
 
+        //needed for serialization
+        public Exam()
+        {
+
+        }
+        #endregion
 
         #region methods
         /// <summary>
