@@ -22,7 +22,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
@@ -46,12 +46,19 @@
             <Button Name="DeleteSemesterBtn" Visibility="Collapsed" Content="Delete Semester" Click="DeleteSemesterBtn_Click" Margin="0 3"/>
             <Button Name="CompleteBtn" Visibility="Collapsed" Content="Complete Semester!" Click="CompleteBtn_Click"/>
         </StackPanel>
-        <StackPanel Grid.Column="1" Background="LightGray">
-            <Label Content="Subjects"/>
-            <Separator Margin="3"/>
-            <ScrollViewer>
-                <StackPanel Name="SubjectPanel"/>
-            </ScrollViewer>
+        <StackPanel Grid.Column="1" Grid.Row="0" Background="LightGray">
+            <StackPanel Name="DetailPanel">
+                <Label Name="SelectedSemesterLabel" Content=""/>
+                <Separator Margin="3"/>
+                <UniformGrid Columns="2">
+                    <Label Content="Start Date" FontSize="18" Grid.Column="0"></Label>
+                    <Label Name="StartDateLabel" FontSize="18" Grid.Column="1"></Label>
+                </UniformGrid>
+                <Separator Margin="3 10 3 3"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="SubjectPanel"/>
+                </ScrollViewer>
+            </StackPanel>
         </StackPanel>
         <StackPanel Margin="3" Grid.Column="1" Grid.Row="1">
             <UniformGrid Columns="2" Rows="2" Margin="0 3">

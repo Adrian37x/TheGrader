@@ -33,20 +33,9 @@ namespace TheGrader.Pages
         public SelectionPage()
         {
             InitializeComponent();
-            semesters = new ObservableCollection<Semester> {
-                new Semester("1.1 Lehrjahr", DateTime.Now, false),
-                new Semester("1.2 Lehrjahr", DateTime.Now, false)
-            };
-            semesters[0].Faecher.Add(new Fach("Maths"));
-            semesters[0].Faecher.Add(new Fach("German"));
-            semesters[1].Faecher.Add(new Fach("History"));
+            semesters = new ObservableCollection<Semester> {};
 
-            semesters[0].Faecher[0].Exams.Add(new Exam("Exponential functions", 30, 45, 1f, DateTime.Now));
-            semesters[0].Faecher[0].Exams.Add(new Exam("Repetition trigonometrie", 8, 15, .5f, DateTime.Now));
-            semesters[0].Faecher[1].Exams.Add(new Exam("Aufsatz: Was bin ich", 42, 50, 1f, DateTime.Now));
-            semesters[1].Faecher[0].Exams.Add(new Exam("Absolutism", 19, 24, .5f, DateTime.Now));
-            semesters[1].Faecher[0].Exams.Add(new Exam("Second World War", 16, 22, .5f, DateTime.Now));
-
+            DetailPanel.Visibility = Visibility.Hidden;
             DisplaySemesters();
         }
 
@@ -119,7 +108,11 @@ namespace TheGrader.Pages
                 CreateSubject.IsEnabled = false;
                 CreateSubject.Background = Brushes.LightGray;
 
+                SelectedSemesterLabel.Content = "";
+                StartDateLabel.Content = "";
                 SubjectPanel.Children.Clear();
+
+                DetailPanel.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -134,6 +127,12 @@ namespace TheGrader.Pages
                 CreateSubject.ClearValue(BackgroundProperty);
 
                 semesterButton = (Button)sender;
+
+                SelectedSemesterLabel.Content = selectedSemester.Name;
+                StartDateLabel.Content = selectedSemester.StartDate.ToShortDateString();
+
+                DetailPanel.Visibility = Visibility.Visible;
+
                 DisplayFaecher(semester);
             }
         }
