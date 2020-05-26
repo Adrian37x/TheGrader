@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Text;
@@ -14,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace TheGrader.Pages
 {
@@ -22,7 +25,7 @@ namespace TheGrader.Pages
     /// </summary>
     public partial class SelectionPage : Page
     {
-        private ObservableCollection<Semester> semesters;
+        private static ObservableCollection<Semester> semesters = new ObservableCollection<Semester>();
 
         private Semester selectedSemester;
         private Button semesterButton;
@@ -33,7 +36,9 @@ namespace TheGrader.Pages
         public SelectionPage()
         {
             InitializeComponent();
-            semesters = new ObservableCollection<Semester> {
+            LoadSemesters();
+
+            /*semesters = new ObservableCollection<Semester> {
                 new Semester("1.1 Lehrjahr", DateTime.Now, false),
                 new Semester("1.2 Lehrjahr", DateTime.Now, false)
             };
@@ -45,7 +50,7 @@ namespace TheGrader.Pages
             semesters[0].Faecher[0].Exams.Add(new Exam("Repetition trigonometrie", 8, 15, .5f, DateTime.Now));
             semesters[0].Faecher[1].Exams.Add(new Exam("Aufsatz: Was bin ich", 42, 50, 1f, DateTime.Now));
             semesters[1].Faecher[0].Exams.Add(new Exam("Absolutism", 19, 24, .5f, DateTime.Now));
-            semesters[1].Faecher[0].Exams.Add(new Exam("Second World War", 16, 22, .5f, DateTime.Now));
+            semesters[1].Faecher[0].Exams.Add(new Exam("Second World War", 16, 22, .5f, DateTime.Now));*/
 
             DisplaySemesters();
         }
@@ -70,6 +75,7 @@ namespace TheGrader.Pages
                 selectedSemester.Faecher.Add(new Fach(SubjectNameBox.Text));
                 SubjectNameBox.Text = null;
                 DisplayFaecher(selectedSemester);
+                SaveSemesters();
             }
             else
             {
@@ -98,6 +104,7 @@ namespace TheGrader.Pages
                 button.Click += (s, ev) => OnSemesterBtn_Click(s, ev, semester);
                 SemesterNameBox.Text = "";
                 StartDatePicker.SelectedDate = null;
+                SaveSemesters();
             }
             else
             {
@@ -156,6 +163,7 @@ namespace TheGrader.Pages
                 selectedSemester.Completed = true;
                 CompleteBtn.IsEnabled = false;
                 CompleteBtn.Background = Brushes.LightGray;
+                SaveSemesters();
             }
         }
 
@@ -177,5 +185,38 @@ namespace TheGrader.Pages
         {
             MainWindow.SetContent(new SubjectPage(fach));
         }
+
+        #region XML Serialization Methods
+        private void SaveSemesters()
+        {
+            if (!File.Exists("data.xml"))
+            {
+                FileStream fs = File.Create("data.xml");
+            }
+            else
+            {
+                StreamWriter filestream = new StreamWriter("data.xml");
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Semester>));
+                xmlSerializer.Serialize(filestream, semesters);
+                filestream.Close();
+            }
+        }
+
+        private void LoadSemesters()
+        {
+            if (!File.Exists("data.xml"))
+            {
+                FileStream fs = File.Create("data.xml");
+            }
+            else
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<Semester>));
+                using (FileStream stream = File.OpenRead("data.xml"))
+                {
+                    semesters = (ObservableCollection<Semester>)serializer.Deserialize(stream);
+                }
+            }
+        } 
+        #endregion
     }
 }

@@ -19,7 +19,11 @@ namespace TheGrader
             this.Completed = completed;
             this.Faecher = new List<Fach>();
         }
+        //needed for xml serialization
+        public Semester()
+        {
 
+        }
     }
 }
 
