@@ -18,13 +18,13 @@ namespace TheGrader
         #endregion
 
         #region constructor
-        public Exam(string name, double pointsScored, double maxPoints, double weight, DateTime date, double grade = 0)
+        public Exam(string name/*, double pointsScored, double maxPoints*/, double weight,/* DateTime date, */double grade = 0)
         {
             this.Name = name;
-            this.PointsScored = pointsScored;
-            this.MaxPoints = maxPoints;
+            //this.PointsScored = pointsScored;
+            //this.MaxPoints = maxPoints;
             this.Weight = weight;
-            this.Date = date;
+            //this.Date = date;
             // the grade will be calculated if not set manually
             if (grade == 0){
                 CalculateGrade();

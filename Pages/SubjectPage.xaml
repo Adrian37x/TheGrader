@@ -48,20 +48,27 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Margin="3">
-            <Button Name="CreateExamBtn" Content="Create" Height="40"/>
+            <Button Name="CreateExamBtn" Content="Create" Height="40" Click="CreateExamBtn_Click"/>
         </StackPanel>
         
         <StackPanel Name="CreateEditPanel" Grid.Column="1" Grid.Row="1" Background="LightGray">
             <Label Content="{Binding}" FontSize="22"/>
             <Separator Margin="3"/>
-            <StackPanel Name="FormPanel">
-                <TextBox Text="{Binding Name}"/>
-                <TextBox Text="{Binding Grade}"/>
+            <StackPanel Name="FormPanel" Margin="3">
+                <UniformGrid Rows="3" Columns="2">
+                    <TextBlock Text="Name"/>
+                    <TextBox Name="NameBox"/>
+                    <TextBlock Text="Grade"/>
+                    <TextBox Name="GradeBox"/>
+                    <TextBlock Text="Value in %"/>
+                    <TextBox Name="ValueBox"/>
+                </UniformGrid>
+                <Button Name="UpdateBtn" Content="Update" Visibility="Hidden" Click="UpdateBtn_Click"/>
             </StackPanel>
         </StackPanel>
         
         <StackPanel Margin="3" Grid.Column="1" Grid.Row="2">
-            <Button Name="DeleteExamBtn" Content="Delete" Background="LightGray" IsEnabled="False" Height="40"/>
+            <Button Name="DeleteExamBtn" Content="Delete" Background="LightGray" IsEnabled="False" Height="40" Click="DeleteExamBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
